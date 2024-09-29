@@ -1,18 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <PackageId>Chapa.NET</PackageId>
-    <Title>Chapa.NET</Title>
-    <Version>2.1.0</Version>
-    <Authors>Kerod Kibatu</Authors>
-    <Company>KerVerse</Company>
+    <PackageId>Chapa-SDK</PackageId>
+    <Title>Chapa-SDK</Title>
+    <Version>2.1.1</Version>
+    <Authors>Kidu Daniel</Authors>
+    <Company>FanFavor</Company>
     <Description>A Simple, Fast and Secure Dotnet SDK for Chapa Financial</Description>
     <PackageIcon>chapalogo.png</PackageIcon>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <RepositoryUrl>https://github.com/kerodkibatu/Chapa.NET</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Fan-Favor/Chapa-SDK</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
