@@ -1,5 +1,6 @@
 using Flurl;
 using Flurl.Http;
+using System.Text.Json;
 
 namespace ChapaNET;
 public enum TransactionStatus
@@ -18,33 +19,28 @@ public partial class Chapa
 
     }
     public Chapa(ChapaConfig config) : this(config.API_SECRET) { }
-    public async Task<ChapaResponse> RequestAsync(ChapaRequest request)
+    public async Task<ChapaResponse> RequestAsync<T>(ChapaRequest<T> request)
     {
-        var reqDict = new Dictionary<string, string?>()
+        
+        var body = new
         {
-            {"email",request.Email},
-            {"amount",request.Amount.ToString()},
-            {"first_name",request.FirstName},
-            {"last_name", request.LastName},
-            {"tx_ref",request.TransactionReference},
-            {"currency",request.Currency},
+            email = request.Email,
+            amount = request.Amount,
+            first_name = request.FirstName,
+            last_name = request.LastName,
+            tx_ref = request.TransactionReference,
+            currency = request.Currency,
+            phone_number = request.PhoneNo,
+            callback_url = request.CallbackUrl,
+            return_url = request.ReturnUrl,
+            meta = new
+            {
+                custom_fields = request.Meta!.custom_fields
+            }
         };
-        if (request.PhoneNo != null)
-            reqDict.Add("phone_number", request.PhoneNo);
-        if (request.CallbackUrl != null)
-            reqDict.Add("callback_url", request.CallbackUrl);
-        if (request.ReturnUrl != null)
-            reqDict.Add("return_url", request.ReturnUrl);
-        if (request.CustomTitle != null)
-            reqDict.Add("customization[title]", request.CustomTitle);
-        if (request.CustomDescription != null)
-            reqDict.Add("customization[description]", request.CustomDescription);
-        if (request.CustomLogo != null)
-            reqDict.Add("customization[logo]", request.CustomLogo);
-
         var result = await "https://api.chapa.co/v1/transaction/initialize"
             .WithHeader(ChapaConfig.AUTH_HEADER, $"Bearer {Config.API_SECRET}")
-            .PostJsonAsync(reqDict);
+            .PostJsonAsync(body);
         var response = await result.GetJsonAsync<ChapaResponse>();
         return response;
     }

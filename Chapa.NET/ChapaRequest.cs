@@ -1,6 +1,13 @@
+using System.Runtime.InteropServices.ObjectiveC;
+
 namespace ChapaNET;
 
-public class ChapaRequest
+public class metaData<T>
+{
+    public T custom_fields { get; set; }
+}
+
+public class ChapaRequest<T>
 {
     public double Amount { get; set; }
     public string? Email { get; set; }
@@ -14,9 +21,13 @@ public class ChapaRequest
     public string? CustomTitle { get; set; }
     public string? CustomDescription { get; set; }
     public string? CustomLogo { get; set; }
+    public metaData<T> Meta { get; set; } = new metaData<T>();
+
+
     public ChapaRequest(
           double amount
         , string tx_ref
+        , T meta
         , string? phoneNo = null
         , string? currency = "ETB"
         , string? callback_url = null
@@ -26,7 +37,7 @@ public class ChapaRequest
         , string? customLogo = null
         , string? email = null
         , string? firstName = null
-        , string? lastName = null)
+        , string? lastName = null )
     {
         Amount = amount;
         Currency = currency;
@@ -40,5 +51,6 @@ public class ChapaRequest
         CustomTitle = customTitle;
         CustomDescription = customDescription;
         CustomLogo = customLogo;
+        Meta = new metaData<T>() { custom_fields = meta };
     }
 }
