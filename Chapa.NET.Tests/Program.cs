@@ -11,7 +11,7 @@ internal class Program
     private static async Task Main(string[] args)
     {
         //Initialize your Chapa Instance
-        string APIKEY = "CHASECK-hJMny3TTmqGoDbDlQWduHkYulDJEVWFv";
+        string APIKEY = "CHASECK_TEST-dHB0y8EqWxjR7FoWzmXZFLVP2nSmiycF";
         Chapa chapa = new(APIKEY);
 
         //Get a unique transaction ID

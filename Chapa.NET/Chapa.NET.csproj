@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <PackageId>Chapa-SDK</PackageId>
     <Title>Chapa-SDK</Title>
-    <Version>2.1.1</Version>
+    <Version>2.1.2</Version>
     <Authors>Kidu Daniel</Authors>
     <Company>FanFavor</Company>
     <Description>A Simple, Fast and Secure Dotnet SDK for Chapa Financial</Description>
